@@ -1,0 +1,484 @@
+<title>Uma Malani</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Uma Malani: computer science and statistics at the University of Chicago. Software, machine learning, and things built at hackathons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a soft wash of New Abnormal colors behind the header, then rounded white cards on a pale blue ground; one reading column. */
+:root {
+  --ground: #f2f6f9;
+  --card: #ffffff;
+  --ink: #1d2832;
+  --muted: #5b6874;
+  --rule: #dde6ed;
+  --blue: #2f84bd;
+  --blue-soft: #dbeaf5;
+  --yellow: #f3c457;
+  --yellow-soft: #fbefcd;
+  --coral: #e0725f;
+  --coral-soft: #f8ddd7;
+  --green-soft: #d9ecd0;
+  --tile: #e8eef3;
+  --shadow: 0 1px 2px rgb(29 40 50 / 0.05), 0 8px 24px rgb(29 40 50 / 0.06);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Figtree", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.625rem;
+  --step-3: clamp(3rem, 10vw, 5.5rem);
+  --small: 0.8125rem;
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0f1820; --card: #17222c; --ink: #e6edf2; --muted: #9aabb8; --rule: #26343f;
+    --blue: #7fbde6; --blue-soft: #1d3446; --yellow: #f3c457; --yellow-soft: #3a3220; --coral: #f0917f; --coral-soft: #3b2522;
+    --green-soft: #22352a; --tile: #22303b; --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0f1820; --card: #17222c; --ink: #e6edf2; --muted: #9aabb8; --rule: #26343f;
+  --blue: #7fbde6; --blue-soft: #1d3446; --yellow: #f3c457; --yellow-soft: #3a3220; --coral: #f0917f; --coral-soft: #3b2522;
+  --green-soft: #22352a; --tile: #22303b; --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.65; }
+a { color: var(--blue); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+
+/* Header */
+header { position: relative; overflow: hidden; }
+#scribble { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.head-inner {
+  position: relative; max-width: 60rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 4.5rem 3rem;
+  display: grid; gap: 1.25rem;
+}
+.tagline { font-family: var(--font-mono); font-size: var(--small); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); line-height: 0.98; letter-spacing: -0.035em; }
+.name-btn { all: unset; cursor: pointer; display: inline-flex; flex-wrap: wrap; gap: 0 0.25em; align-items: baseline; border-radius: 8px; }
+.name-btn .last { color: var(--blue); transition: color 0.2s; }
+.name-btn:hover .last { color: var(--coral); }
+.name-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; }
+.hint { font-size: 0.9375rem; color: var(--muted); display: inline-flex; align-items: center; gap: 0.5rem; }
+.hint::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px var(--yellow-soft); }
+.lede { font-size: var(--step-1); max-width: 40rem; line-height: 1.55; }
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.9375rem; padding-top: 0.25rem; }
+.links a, .links .plain {
+  background: var(--card); color: var(--ink); text-decoration: none; padding: 0.45rem 0.95rem;
+  border-radius: 999px; box-shadow: var(--shadow); font-weight: 500; transition: background 0.15s, color 0.15s;
+}
+.links a:hover { background: var(--blue); color: var(--card); }
+.links .plain { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); user-select: all; display: inline-flex; align-items: center; }
+
+/* Main */
+main {
+  max-width: 60rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 1.5rem 4rem;
+  display: grid; gap: 3.5rem;
+}
+section { display: grid; gap: 1.25rem; }
+section > h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-2); letter-spacing: -0.02em; }
+.panel { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.75rem; min-width: 0; }
+
+/* Projects */
+.projects { display: grid; gap: 1.25rem; }
+.project { display: grid; gap: 0.9rem; align-content: start; }
+.project h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-2); line-height: 1.15; letter-spacing: -0.02em; }
+.where { font-family: var(--font-mono); font-size: var(--small); color: var(--muted); }
+.question { font-size: var(--step-1); line-height: 1.45; max-width: 42rem; color: var(--muted); }
+.project ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; max-width: 46rem; }
+.project li::marker { color: var(--blue); }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.75rem; }
+.figures div { border-radius: 12px; padding: 0.85rem 1rem; display: grid; gap: 0.1rem; align-content: start; background: var(--blue-soft); }
+.figures div:nth-child(2) { background: var(--yellow-soft); }
+.figures div:nth-child(3) { background: var(--coral-soft); }
+.figures b { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; line-height: 1.1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.figures span { font-size: 0.875rem; line-height: 1.35; color: var(--muted); }
+.loop {
+  overflow-x: auto; margin: 0; background: var(--ground); color: var(--ink); border-radius: 12px;
+  padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.6;
+}
+.loop .y { color: #b7860b; } .loop .b { color: var(--blue); } .loop .r { color: var(--coral); }
+:root[data-theme="dark"] .loop .y { color: var(--yellow); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .loop .y { color: var(--yellow); } }
+.stack-line { font-family: var(--font-mono); font-size: var(--small); color: var(--muted); }
+.small-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.25rem; }
+.small-projects .project h3 { font-size: var(--step-1); }
+
+/* Roles */
+.roles { display: grid; gap: 1.5rem; }
+.role { display: grid; gap: 0.3rem; }
+.role + .role { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+.role-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; align-items: baseline; }
+.role h3 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; letter-spacing: -0.01em; }
+.role h3 small { font-family: var(--font-body); font-weight: 400; color: var(--muted); font-size: 1rem; letter-spacing: 0; }
+.role time { font-family: var(--font-mono); font-size: var(--small); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.role p { max-width: 46rem; color: var(--muted); }
+
+/* Facts */
+.facts dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.75rem 1.5rem; }
+.facts dt { font-family: var(--font-mono); font-size: var(--small); color: var(--muted); padding-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.facts dd { margin: 0; }
+
+footer {
+  max-width: 60rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 3rem;
+  font-family: var(--font-mono); font-size: var(--small); color: var(--muted);
+}
+
+/* Puzzle */
+dialog#puzzle {
+  border: 0; border-radius: 22px; background: var(--card); color: var(--ink); box-shadow: 0 24px 60px rgb(0 0 0 / 0.25);
+  width: min(34rem, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow-y: auto; padding: 1.5rem;
+}
+dialog#puzzle::backdrop { background: rgb(15 24 32 / 0.45); backdrop-filter: blur(4px); }
+.pz { display: grid; gap: 0.9rem; }
+.pz-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+.pz-head h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; }
+.pz-head p { font-size: 0.9375rem; color: var(--muted); }
+.pz-close { font: inherit; font-size: 1.5rem; line-height: 1; background: var(--tile); border: 0; color: var(--ink); cursor: pointer; width: 2.25rem; height: 2.25rem; border-radius: 50%; flex: none; }
+.board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.tile {
+  font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(0.62rem, 2.6vw, 0.875rem); letter-spacing: 0.02em;
+  background: var(--tile); color: var(--ink); border: 0; border-radius: 10px; min-height: 4rem; padding: 0.25rem;
+  cursor: pointer; overflow-wrap: anywhere; transition: transform 0.1s, background 0.15s;
+}
+.tile:active { transform: scale(0.96); }
+.tile.sel { background: var(--ink); color: var(--card); }
+.solved { grid-column: 1 / -1; padding: 0.75rem; text-align: center; color: #1d2832; min-height: 4rem; display: grid; align-content: center; gap: 0.1rem; border-radius: 10px; }
+.solved b { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+.solved span { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
+.solved small { font-size: 0.8125rem; }
+.c0 { background: #f6d77f; } .c1 { background: #a9d18e; } .c2 { background: #9fcbea; } .c3 { background: #efa192; }
+.pz-status { display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.9375rem; min-height: 1.5rem; color: var(--muted); }
+.dots { display: inline-flex; gap: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
+.pz-msg { text-align: center; font-size: 0.9375rem; color: var(--coral); min-height: 1.2rem; }
+.pz-msg p { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--ink); }
+.pz-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.pz-actions button {
+  font-family: var(--font-body); font-weight: 600; font-size: 0.9375rem; border: 1px solid var(--rule); background: var(--card); color: var(--ink);
+  padding: 0.55rem 1.15rem; cursor: pointer; border-radius: 999px;
+}
+.pz-actions button.primary { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.pz-actions button:disabled { opacity: 0.4; cursor: default; }
+.board.shake { animation: shake 0.3s; }
+@keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.share { font-family: var(--font-mono); white-space: pre; text-align: center; line-height: 1.25; font-size: 1.1rem; }
+
+@media (max-width: 640px) {
+  .head-inner { padding-block: 3rem 2rem; }
+  main { padding-block: 1rem 3rem; gap: 2.5rem; }
+  .panel { padding: 1.25rem; }
+  .facts dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .facts dd { margin-bottom: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .board.shake { animation: none; } .tile, .name-btn .last, .links a { transition: none; } }
+</style>
+
+<header>
+  <canvas id="scribble" aria-hidden="true"></canvas>
+  <div class="head-inner">
+    <p class="tagline">Computer Science &amp; Statistics · University of Chicago · Class of 2029</p>
+    <h1><button type="button" class="name-btn" id="open-puzzle" aria-haspopup="dialog" title="Play a puzzle"><span class="first">Uma</span> <span class="last">Malani</span></button></h1>
+    <p class="hint">Tap my name for today's puzzle</p>
+    <p class="lede">I build software, mostly where it meets machine learning: a webcam physical-therapy coach that talks back, NLP pipelines over thousands of earnings calls, a dialogue system for a social robot, and the internal tools UChicago's CS lab runs on.</p>
+    <nav class="links" aria-label="Links">
+      <a href="https://github.com/umamalani">GitHub</a>
+      <a href="https://linkedin.com/in/umamalani">LinkedIn</a>
+      <a href="https://devpost.com/umamalani">Devpost</a>
+      <a href="Uma_Malani_Resume.pdf">Résumé (PDF)</a>
+      <span class="plain">umalani@uchicago.edu</span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="projects">
+    <h2>Things I've built</h2>
+    <div class="projects">
+
+      <article class="panel project">
+        <p class="where">Google Build with AI Hackathon, WashU DevFest · Apr 2026 · Team project, 441 participants</p>
+        <h3>KinetiCare</h3>
+        <p class="question">A browser-based AI physical therapy coach: your webcam watches your form and a coach talks you through it.</p>
+        <div class="figures">
+          <div><b>33</b><span>body landmarks tracked at 30 fps, on-device</span></div>
+          <div><b>5</b><span>voice coach personas</span></div>
+          <div><b>&lt;5 min</b><span>from intake to post-session report</span></div>
+        </div>
+        <pre class="loop" aria-label="KinetiCare coaching loop">webcam ──▶ <span class="b">MediaPipe Pose</span>   33 landmarks @ 30 fps, in the browser
+                │
+                ▼   every 8 s, if the coach isn't already talking
+          <span class="y">Gemini 2.5 Flash</span>  reads joint angles vs. your calibration,
+                │            fatigue, expression, one frame
+                ▼
+          <span class="r">ElevenLabs</span>        speaks one targeted correction</pre>
+        <ul>
+          <li>A planning agent turns the user's injury and goals into an exercise protocol, and three calibration poses capture their own joint angles, so form is scored against their body instead of generic thresholds.</li>
+          <li>The hard part was concurrency: pose detection, model calls, speech and React state all running at once. Async queueing and voice-busy detection keep the coach from talking over itself.</li>
+          <li>Feedback was first sent every frame, which was unbearable. Tuning it to every 8 seconds made the coach useful.</li>
+          <li>A report agent writes a PT-style note with range-of-motion data and flags for when to see a real therapist.</li>
+        </ul>
+        <p class="stack-line">Next.js 14 · React 18 · TypeScript · Tailwind · MediaPipe · Gemini · ElevenLabs · <a href="https://devpost.com/software/kineticare">Devpost write-up</a></p>
+      </article>
+
+      <article class="panel project">
+        <p class="where">Actelligent · Data Science Intern · Jun–Aug 2026</p>
+        <h3>NLP pipeline over ~9,000 companies' earnings calls</h3>
+        <p class="question">Pulling themes and sentiment out of messy, real-world transcripts at scale.</p>
+        <div class="figures">
+          <div><b>~9,000</b><span>global companies processed</span></div>
+          <div><b>3</b><span>models: BERTopic, VADER, FinBERT</span></div>
+          <div><b>AWS</b><span>where the pipeline runs</span></div>
+        </div>
+        <ul>
+          <li>Built Python pipelines on AWS that extract topics with BERTopic and sentiment with VADER and FinBERT from earnings-call transcripts.</li>
+          <li>Turned the text features into structured signals and validated them with out-of-sample, random-control and cost-adjusted tests, so a result only counted if it beat chance.</li>
+        </ul>
+        <p class="stack-line">Python · BERTopic · VADER · FinBERT · pandas · AWS</p>
+      </article>
+
+      <div class="small-projects">
+        <article class="panel project">
+          <p class="where">UChicago HRI Lab · 2025–2026</p>
+          <h3>Dialogue system for the Temi robot</h3>
+          <p>Designed a framework for robot conversation built on self-disclosure and empathetic listening, then implemented it in Kotlin as deployable interaction scripts and ran user studies with it.</p>
+          <p class="stack-line">Kotlin · Temi robot</p>
+        </article>
+        <article class="panel project">
+          <p class="where">CS Instructional Laboratory · 2026–now</p>
+          <h3>Internal tools for UChicago's CS lab</h3>
+          <p>Build and maintain the web tools lab staff use every day: an equipment checkout system, a shift scheduler, and an alumni database. I also image lab machines, including sandboxed exam environments for professors.</p>
+          <p class="stack-line">Web tools · lab infrastructure</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="panel roles">
+      <div class="role">
+        <div class="role-head"><h3>Widget Factory <small>QA Engineer, part-time · YC-backed</small></h3><time>Mar 2026 – now</time></div>
+        <p>Write and run test plans for new features and file reproducible bug reports for the engineering team.</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>Computer Science Instructional Laboratory <small>Staff</small></h3><time>Spring 2026 – now</time></div>
+        <p>Internal web tools, lab machine imaging, and front-desk tech support.</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>Actelligent <small>Data Science Intern</small></h3><time>Jun – Aug 2026</time></div>
+        <p>NLP pipelines on AWS over earnings-call transcripts for ~9,000 companies.</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>UChicago Human-Robot Interaction Lab <small>Research Assistant</small></h3><time>Jun 2025 – Jun 2026</time></div>
+        <p>Robot dialogue framework and its Kotlin implementation for Temi; ran user studies.</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>Paragon Global Investments <small>Quantitative Analyst</small></h3><time>Feb 2026 – now</time></div>
+        <p>Backtested 21 variants of a factor-residualized momentum strategy in Python and pitched the result (4.4% annualized alpha, t = 2.15).</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>Jump Trading <small>Quantitative Research Intern</small></h3><time>Jun – Aug 2024</time></div>
+        <p>Fine-tuned GPT-3 on financial headlines for sentiment classification and combined it with classical models for ~80% accuracy on market-direction forecasts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beyond">
+    <h2>Beyond class</h2>
+    <div class="panel roles">
+      <div class="role">
+        <div class="role-head"><h3>Girls Who Code <small>Co-founder &amp; President</small></h3><time>2022 – 2025</time></div>
+        <p>Founded the chapter, wrote a weekly curriculum, and led teams in the ACSL competition and Technovation Challenge.</p>
+      </div>
+      <div class="role">
+        <div class="role-head"><h3>Data Science Society <small>Presenter &amp; Analyst</small></h3><time>Fall 2025 – now</time></div>
+        <p>Analyzed 200+ podcasts, articles and missing-persons reports to test the "missing white woman" hypothesis, and give weekly teaching talks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education &amp; skills</h2>
+    <div class="panel facts">
+      <dl>
+        <dt>Degree</dt><dd>B.S. Computer Science and Statistics, University of Chicago, expected June 2029. GPA 3.94. Dean's List 2025–26.</dd>
+        <dt>Coursework</dt><dd>Computer Systems Programming I–II, machine learning (Pathways in Data Science), Discrete Mathematics, Linear Algebra, Calculus III.</dd>
+        <dt>Languages</dt><dd>Python, C, Kotlin, JavaScript, SQL, R, HTML/CSS.</dd>
+        <dt>Tools</dt><dd>React, PyTorch, scikit-learn, pandas, NumPy, AWS, Git, Jupyter.</dd>
+        <dt>Also</dt><dd>Conversational Mandarin.</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>Uma Malani · Chicago, IL · umalani@uchicago.edu · colors borrowed from The New Abnormal by The Strokes</footer>
+
+<dialog id="puzzle" aria-labelledby="pz-title">
+  <div class="pz">
+    <div class="pz-head">
+      <div>
+        <h2 id="pz-title">Uma Connections</h2>
+        <p>Find four groups of four. Each group says something about me.</p>
+      </div>
+      <button type="button" class="pz-close" id="pz-close" aria-label="Close puzzle">×</button>
+    </div>
+    <div class="board" id="pz-board"></div>
+    <div class="pz-status" id="pz-status">Mistakes remaining: <span class="dots" id="pz-dots"></span></div>
+    <p class="pz-msg" id="pz-msg" role="status"></p>
+    <div class="pz-actions" id="pz-actions">
+      <button type="button" id="pz-shuffle">Shuffle</button>
+      <button type="button" id="pz-clear">Deselect all</button>
+      <button type="button" id="pz-submit" class="primary">Submit</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+// Header wash: soft, blurred blots of the New Abnormal colors, seeded so they look the same on every visit.
+(() => {
+  const c = document.getElementById("scribble");
+  const ctx = c.getContext("2d");
+  function draw() {
+    const r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    c.width = r.width * dpr; c.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const W = r.width, H = r.height;
+    const dark = getComputedStyle(document.documentElement).colorScheme.includes("dark");
+    const a = dark ? 0.22 : 0.4;
+    ctx.clearRect(0, 0, W, H);
+    [[0.86, 0.22, 0.32, `rgba(47,132,189,${a})`], [0.68, 0.72, 0.22, `rgba(243,196,87,${a})`], [0.98, 0.8, 0.18, `rgba(224,114,95,${a * 0.8})`]]
+      .forEach(([x, y, s, col]) => {
+        const rad = Math.max(W, 600) * s;
+        const g = ctx.createRadialGradient(W * x, H * y, 0, W * x, H * y, rad);
+        g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      });
+  }
+  draw();
+  let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 120); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+
+(() => {
+  const GROUPS = [
+    { name: "Git commands", words: ["PUSH", "PULL", "FETCH", "STASH"], note: "The four I type most, usually in that order of regret." },
+    { name: "___ test", words: ["UNIT", "STRESS", "BETA", "SMOKE"], note: "Writing test plans is my job at Widget Factory." },
+    { name: "Dive positions", words: ["STRAIGHT", "PIKE", "TUCK", "FREE"], note: "I captained my high school dive team and set all four school records." },
+    { name: "Songs by The Strokes", words: ["REPTILIA", "SOMEDAY", "JUICEBOX", "SELFLESS"], note: "My favorite band. This site borrows its colors from The New Abnormal." }
+  ];
+  const EMOJI = ["🟨", "🟩", "🟦", "🟥"];
+  const dlg = document.getElementById("puzzle");
+  const board = document.getElementById("pz-board");
+  const dots = document.getElementById("pz-dots");
+  const msg = document.getElementById("pz-msg");
+  const actions = document.getElementById("pz-actions");
+  const status = document.getElementById("pz-status");
+  const submitBtn = document.getElementById("pz-submit");
+  let remaining, solved, selected, pool, guesses, seen;
+
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function reset() {
+    remaining = 4; solved = []; selected = new Set(); guesses = []; seen = new Set();
+    pool = shuffle(GROUPS.flatMap(g => g.words));
+    msg.textContent = "";
+    actions.hidden = false; status.hidden = false;
+    render();
+  }
+
+  function render() {
+    board.innerHTML = "";
+    solved.forEach(gi => {
+      const g = GROUPS[gi];
+      const d = document.createElement("div");
+      d.className = "solved c" + gi;
+      d.innerHTML = `<b>${g.name}</b><span>${g.words.join(", ")}</span><small>${g.note}</small>`;
+      board.appendChild(d);
+    });
+    pool.forEach(w => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tile" + (selected.has(w) ? " sel" : "");
+      b.textContent = w;
+      b.setAttribute("aria-pressed", selected.has(w));
+      b.addEventListener("click", () => {
+        if (selected.has(w)) selected.delete(w);
+        else if (selected.size < 4) selected.add(w);
+        render();
+        board.querySelectorAll(".tile").forEach(t => { if (t.textContent === w) t.focus(); });
+      });
+      board.appendChild(b);
+    });
+    dots.innerHTML = "<i></i>".repeat(remaining);
+    submitBtn.disabled = selected.size !== 4;
+  }
+
+  function finish(won) {
+    actions.hidden = true; status.hidden = true;
+    GROUPS.forEach((g, i) => { if (!solved.includes(i)) solved.push(i); });
+    pool = []; render();
+    msg.innerHTML = "";
+    const p = document.createElement("p");
+    p.textContent = won ? (guesses.length === 4 ? "Perfect solve. We should talk." : "Solved! Thanks for playing.") : "Next time. Thanks for playing.";
+    const share = document.createElement("div");
+    share.className = "share";
+    share.textContent = guesses.map(row => row.map(i => EMOJI[i]).join("")).join("\n");
+    const again = document.createElement("div");
+    again.className = "pz-actions";
+    again.innerHTML = '<button type="button" class="primary">Play again</button>';
+    again.querySelector("button").addEventListener("click", reset);
+    msg.append(p, share, again);
+  }
+
+  submitBtn.addEventListener("click", () => {
+    if (selected.size !== 4) return;
+    const pick = [...selected];
+    const key = pick.slice().sort().join("|");
+    if (seen.has(key)) { msg.textContent = "Already guessed!"; return; }
+    seen.add(key);
+    const owners = pick.map(w => GROUPS.findIndex(g => g.words.includes(w)));
+    guesses.push(owners);
+    const hit = GROUPS.findIndex(g => pick.every(w => g.words.includes(w)));
+    if (hit >= 0) {
+      solved.push(hit);
+      pool = pool.filter(w => !selected.has(w));
+      selected = new Set();
+      msg.textContent = "";
+      render();
+      if (solved.length === 4) finish(true);
+      return;
+    }
+    remaining--;
+    const counts = owners.reduce((m, o) => (m[o] = (m[o] || 0) + 1, m), {});
+    msg.textContent = Object.values(counts).includes(3) ? "One away…" : "Not quite.";
+    board.classList.remove("shake"); void board.offsetWidth; board.classList.add("shake");
+    render();
+    if (remaining === 0) finish(false);
+  });
+  document.getElementById("pz-shuffle").addEventListener("click", () => { shuffle(pool); render(); });
+  document.getElementById("pz-clear").addEventListener("click", () => { selected = new Set(); render(); });
+  document.getElementById("pz-close").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  document.getElementById("open-puzzle").addEventListener("click", () => { if (!solved || solved.length === 4 || remaining === 0) reset(); dlg.showModal(); });
+})();
+</script>
